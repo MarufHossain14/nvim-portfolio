@@ -1,18 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --bg: #1a1b26;
-  --bg-alt: #16161e;
-  --fg: #c0caf5;
-  --muted: #565f89;
-  --blue: #7aa2f7;
-  --purple: #bb9af7;
-  --cyan: #7dcfff;
-  --green: #9ece6a;
-  --yellow: #e0af68;
-  --orange: #ff9e64;
-  --red: #f7768e;
-  --border: #2f344d;
+  --bg: #101010;
+  --bg-alt: #272727;
+  --fg: #b0b0b0;
+  --muted: #50585d;
+  --blue: #458ee6;
+  --purple: #777777;
+  --cyan: #5abfb5;
+  --green: #86cd82;
+  --yellow: #d9ba73;
+  --orange: #f54d27;
+  --red: #ff7676;
+  --border: #ffffff;
 
   --text-color: var(--fg);
   --primary: var(--blue);
