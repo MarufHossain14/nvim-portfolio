@@ -4,6 +4,10 @@ const COMMANDS = [
     description: "List commands",
   },
   {
+    command: ":theme",
+    description: "Cycle theme",
+  },
+  {
     command: "about",
     description: "About Me",
   },
@@ -42,6 +46,26 @@ const COMMANDS = [
     description: "Clear terminal",
   },
 ];
+
+const THEMES = ["kanagawa", "catppuccin", "rosepine"];
+
+const getCurrentTheme = () => {
+  if (typeof document === "undefined") return "kanagawa";
+  const stored = window.localStorage.getItem("theme");
+  if (stored && THEMES.includes(stored)) return stored;
+  const current = document.documentElement.getAttribute("data-theme");
+  return THEMES.includes(current) ? current : "kanagawa";
+};
+
+const applyTheme = (theme) => {
+  if (typeof document === "undefined") return;
+  if (theme === "kanagawa") {
+    document.documentElement.removeAttribute("data-theme");
+  } else {
+    document.documentElement.setAttribute("data-theme", theme);
+  }
+  window.localStorage.setItem("theme", theme);
+};
 
 const getProjects = async () => {
   const projects = await (await fetch("/api/projects")).json();
@@ -83,6 +107,13 @@ export const CONTENTS = {
     `<br />
       <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span> or <span style="color: var(--secondary)">:help</span></div>`,
   ":help": () => CONTENTS.help(),
+  ":theme": () => {
+    const current = getCurrentTheme();
+    const currentIndex = THEMES.indexOf(current);
+    const nextTheme = THEMES[(currentIndex + 1) % THEMES.length];
+    applyTheme(nextTheme);
+    return `<div class="command">Theme: <span style="color: var(--secondary)">${nextTheme}</span></div>`;
+  },
   about: () => `Hi, I'm Maruf Hossain, a Computer Science & Mathematics student at <a href="https://students.wlu.ca" target="_blank">Wilfrid Laurier University</a> (Waterloo, ON).
     <br/><br/>
     I'm the VP of Engineering at Aippa Health (stealth AI startup), leading backend architecture with FastAPI and PostgreSQL for secure data ingestion and model inference pipelines.

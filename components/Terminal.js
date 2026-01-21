@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CONTENTS } from "../utils/commandHelper";
 import Command from "./Command";
 import styles from "./Terminal.module.css";
@@ -9,6 +9,17 @@ export default function Terminal() {
   const [commands, setCommands] = useState([]);
   const [loading, setLoading] = useState(false);
   const terminalRef = useRef(null);
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem("theme");
+    if (stored) {
+      if (stored === "kanagawa") {
+        document.documentElement.removeAttribute("data-theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", stored);
+      }
+    }
+  }, []);
 
   const escapeHTML = (str) =>
     str
