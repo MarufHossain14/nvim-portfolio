@@ -36,14 +36,8 @@ const COMMANDS = [
     description: "Contact Me",
   },
   {
-    command: ":q",
-    description: "Clear terminal",
-  },
-  {
-    command:
-      // 'clear <span style="color: var(--primary)">(Ctrl+L shortcut)</span>',
-      "clear",
-    description: "Clear terminal",
+    command: ":q / :clear / clear",
+    description: "Clear the terminal",
   },
 ];
 
