@@ -35,6 +35,11 @@ export default async function handler(req, res) {
         username: "hmaruf.com",
         link: "https://www.hmaruf.com",
       },
+      {
+        medium: "links",
+        username: "links.hmaruf.com",
+        link: "https://links.hmaruf.com/",
+      },
     ];
 
     res.json(contactMediums);

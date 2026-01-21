@@ -36,6 +36,10 @@ const COMMANDS = [
     description: "Contact Me",
   },
   {
+    command: "links",
+    description: "All my links",
+  },
+  {
     command: "q / :q / :clear / clear",
     description: "Clear the terminal",
   },
@@ -74,7 +78,8 @@ const getProjects = async () => {
         <p class="meaning">${project.description}</p>
       </div>`
       )
-      .join("");
+      .join("") +
+    `<div class="command">More projects: <a href="https://www.hmaruf.com/projects" target="_blank">hmaruf.com/projects</a></div>`;
   return projectHTML;
 };
 
@@ -151,6 +156,10 @@ export const CONTENTS = {
   <div class="meaning">- Supported large-scale examination data processing and operational workflows, handling thousands of assessment records across distributed international teams</div>
   `,
   contact: getContacts,
+  links: () => {
+    window.open("https://links.hmaruf.com/", "_blank");
+    return "";
+  },
   resume: () => {
     window.open("/resume.pdf", "_blank");
     return "";

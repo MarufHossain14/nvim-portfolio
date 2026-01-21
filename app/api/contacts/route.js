@@ -25,6 +25,11 @@ export async function GET(request) {
       username: "hmaruf.com",
       link: "https://www.hmaruf.com",
     },
+    {
+      medium: "links",
+      username: "links.hmaruf.com",
+      link: "https://links.hmaruf.com/",
+    },
   ];
 
   return Response.json(contactMediums, {
