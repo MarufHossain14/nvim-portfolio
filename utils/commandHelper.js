@@ -36,7 +36,7 @@ const COMMANDS = [
     description: "Contact Me",
   },
   {
-    command: ":q / :clear / clear",
+    command: "q / :q / :clear / clear",
     description: "Clear the terminal",
   },
 ];

@@ -35,7 +35,12 @@ export default function Terminal() {
     setCommands([...commands, { command, output: "Loading..." }]);
     if (`${command}` in CONTENTS) {
       output = await CONTENTS[`${command}`]();
-    } else if (command === "clear" || command === ":clear" || command === ":q") {
+    } else if (
+      command === "clear" ||
+      command === ":clear" ||
+      command === ":q" ||
+      command === "q"
+    ) {
       setLoading(false);
       return setCommands([]);
     } else {
