@@ -1,7 +1,10 @@
 .terminal {
   max-height: calc(100vh - 160px);
   margin-bottom: 20px;
+  padding: 6px 2px 12px;
   overflow-y: scroll;
+  font-size: 14px;
+  line-height: 1.75;
 }
 
 .terminal::-webkit-scrollbar {

@@ -87,3 +87,25 @@ h3 {
 a {
   color: var(--secondary);
 }
+
+.command {
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.meaning {
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+.skill {
+  margin-top: 6px;
+  color: var(--fg);
+}
+
+.help-command {
+  margin-top: 8px;
+  color: var(--red);
+}
