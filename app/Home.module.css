@@ -11,7 +11,7 @@
 .header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   margin-bottom: 10px;
 }
 
@@ -67,4 +67,26 @@
 
 .commandHint {
   color: var(--cyan);
+}
+
+.modeHint {
+  color: var(--fg);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  background-color: var(--bg-alt);
+  border: 1px solid rgba(114, 113, 105, 0.45);
+  border-radius: 6px;
+  padding: 2px 8px;
+  width: fit-content;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.promptLine {
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.interactive:focus-within .modeHint {
+  opacity: 1;
 }

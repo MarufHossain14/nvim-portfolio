@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "./Input.module.css";
 
-export default function Input({ command, onSubmit }) {
+export default function Input({ command, onSubmit, inputRef }) {
   const [_command, setCommand] = useState(command ? command : "");
 
   const handleSubmit = (e) => {
@@ -26,7 +26,14 @@ export default function Input({ command, onSubmit }) {
         value={_command}
         onChange={(e) => setCommand(e.target.value)}
         disabled={command ? true : false}
-        ref={(input) => input && !command && input.focus()}
+        ref={(input) => {
+          if (inputRef) {
+            inputRef.current = input;
+          }
+          if (input && !command) {
+            input.focus();
+          }
+        }}
         autoFocus={command === ""}
       />
     </form>

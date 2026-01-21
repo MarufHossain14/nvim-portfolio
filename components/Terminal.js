@@ -9,6 +9,7 @@ export default function Terminal() {
   const [commands, setCommands] = useState([]);
   const [loading, setLoading] = useState(false);
   const terminalRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const stored = window.localStorage.getItem("theme");
@@ -19,6 +20,25 @@ export default function Terminal() {
         document.documentElement.setAttribute("data-theme", stored);
       }
     }
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (
+        event.key === "i" &&
+        !event.altKey &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        inputRef.current &&
+        document.activeElement !== inputRef.current
+      ) {
+        event.preventDefault();
+        inputRef.current.focus();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const escapeHTML = (str) =>
@@ -60,7 +80,12 @@ export default function Terminal() {
       {commands.map(({ command, output }, index) => (
         <Command command={command} output={output} key={index} />
       ))}
-      {!loading && <Command onSubmit={(command) => addCommand(command)} />}
+      {!loading && (
+        <Command
+          onSubmit={(command) => addCommand(command)}
+          inputRef={inputRef}
+        />
+      )}
     </div>
   );
 }

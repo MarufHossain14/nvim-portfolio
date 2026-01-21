@@ -96,6 +96,9 @@ const getContacts = async () => {
 };
 
 export const CONTENTS = {
+  ":help about": () => CONTENTS.about(),
+  ":help projects": () => CONTENTS.projects(),
+  ":help contact": () => CONTENTS.contact(),
   help: () =>
     COMMANDS.map(
       (command) => `<div style="display: flex; justify-content: space-between;">
@@ -104,7 +107,7 @@ export const CONTENTS = {
       </div>`
     ).join("") +
     `<br />
-      <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span> or <span style="color: var(--secondary)">:help</span></div>`,
+      <div class="command">Try :help about, :help projects, or :help contact</div>`,
   ":help": () => CONTENTS.help(),
   ":theme": () => {
     const current = getCurrentTheme();
