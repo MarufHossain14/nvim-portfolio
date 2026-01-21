@@ -1,5 +1,9 @@
 const COMMANDS = [
   {
+    command: ":help",
+    description: "List commands",
+  },
+  {
     command: "about",
     description: "About Me",
   },
@@ -26,6 +30,10 @@ const COMMANDS = [
   {
     command: "contact",
     description: "Contact Me",
+  },
+  {
+    command: ":q",
+    description: "Clear terminal",
   },
   {
     command:
@@ -73,7 +81,8 @@ export const CONTENTS = {
       </div>`
     ).join("") +
     `<br />
-      <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span></div>`,
+      <div class="command">Type one of the above to view. For eg. <span style="color: var(--secondary)">about</span> or <span style="color: var(--secondary)">:help</span></div>`,
+  ":help": () => CONTENTS.help(),
   about: () => `Hi, I'm Maruf Hossain, a Computer Science & Mathematics student at <a href="https://students.wlu.ca" target="_blank">Wilfrid Laurier University</a> (Waterloo, ON).
     <br/><br/>
     I'm the VP of Engineering at Aippa Health (stealth AI startup), leading backend architecture with FastAPI and PostgreSQL for secure data ingestion and model inference pipelines.
