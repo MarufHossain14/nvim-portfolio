@@ -5,10 +5,15 @@ import styles from "../app/Home.module.css";
 export default function Home() {
   return (
     <div className={styles.container}>
-      <h1>
-        marufhossain@nvim:$<span className={styles.help}> :help</span>
-      </h1>
-      <p>
+      <div className={styles.header}>
+        <div className={styles.statusline}>
+          <span className={styles.mode}>NORMAL</span>
+          <span className={styles.file}>init.lua · .tmux.conf · .zshrc</span>
+          <span className={styles.position}>1:1</span>
+        </div>
+        <h1>
+          marufhossain@nvim:$<span className={styles.commandHint}> :help</span>
+        </h1>
         <a
           className={styles.subtleLink}
           href="https://www.hmaruf.com"
@@ -17,7 +22,7 @@ export default function Home() {
         >
           Open main portfolio
         </a>
-      </p>
+      </div>
 
       <Terminal />
     </div>
