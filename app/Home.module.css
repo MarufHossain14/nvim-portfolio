@@ -1,64 +1,11 @@
 .container {
-  margin: 0 auto;
-  max-width: 900px;
-}
-
-.frame {
-  border: 1px solid var(--border);
-  background: linear-gradient(180deg, rgba(22, 22, 30, 0.9) 0%, rgba(26, 27, 38, 0.95) 100%);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.titlebar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  background-color: var(--bg-alt);
-  border-bottom: 1px solid var(--border);
-}
-
-.tabs {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.tab {
-  padding: 4px 10px;
-  border-radius: 8px;
-  color: var(--muted);
-  background-color: #202233;
-  font-size: 13px;
-}
-
-.activeTab {
-  color: var(--fg);
-  background-color: #24283b;
-  border: 1px solid var(--border);
-}
-
-.mode {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--green);
-  border: 1px solid rgba(158, 206, 106, 0.35);
-  padding: 2px 8px;
-  border-radius: 999px;
-}
-
-.editor {
-  padding: 20px;
-  min-height: 70vh;
-}
-
-.header {
+  min-height: 100vh;
+  padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 18px;
+  justify-content: center;
+  height: 100vh;
+  max-width: 600px;
 }
 
 .help {
@@ -67,23 +14,4 @@
 
 .subtleLink {
   color: var(--secondary);
-  font-size: 14px;
-}
-
-.statusline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 14px;
-  background-color: #202233;
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-}
-
-.statusLeft {
-  color: var(--fg);
-}
-
-.statusRight {
-  color: var(--muted);
 }
