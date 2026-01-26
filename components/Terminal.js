@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CONTENTS } from "../utils/commandHelper";
+import { AUTOCOMPLETE_COMMANDS, CONTENTS } from "../utils/commandHelper";
 import Command from "./Command";
 import styles from "./Terminal.module.css";
 
 export default function Terminal() {
   const [commands, setCommands] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [history, setHistory] = useState([]);
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -53,6 +54,7 @@ export default function Terminal() {
     let output;
     setLoading(true);
     setCommands([...commands, { command, output: "Loading..." }]);
+    setHistory((prev) => [...prev, command]);
     if (`${command}` in CONTENTS) {
       output = await CONTENTS[`${command}`]();
     } else if (
@@ -84,6 +86,8 @@ export default function Terminal() {
         <Command
           onSubmit={(command) => addCommand(command)}
           inputRef={inputRef}
+          history={history}
+          suggestions={AUTOCOMPLETE_COMMANDS}
         />
       )}
     </div>

@@ -188,3 +188,12 @@ export const CONTENTS = {
   error: (input) =>
     `<div class="help-command">sh: Unknown command: ${input}</div><div class="help-command">See \`help\` for info`,
 };
+
+export const AUTOCOMPLETE_COMMANDS = [
+  ...new Set([
+    ...COMMANDS.flatMap((command) =>
+      command.command.split("/").map((entry) => entry.trim())
+    ),
+    ...Object.keys(CONTENTS),
+  ]),
+].filter(Boolean);
