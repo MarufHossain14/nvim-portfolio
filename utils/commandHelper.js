@@ -95,6 +95,26 @@ const getContacts = async () => {
     .join("");
 };
 
+const getLinks = async () => {
+  const links = await (await fetch("/api/links")).json();
+  const maxNetworkLength = links.reduce(
+    (max, link) => Math.max(max, (link.network || "").length),
+    0
+  );
+  const padNetwork = (network) =>
+    (network || "")
+      .padEnd(maxNetworkLength, " ")
+      .replace(/ /g, "&nbsp;");
+  return links
+    .map(
+      (link) =>
+        `<div class="command"><b style="white-space: pre">${padNetwork(
+          link.network
+        )}</b> -> <a class="meaning" href="${link.url}" target="_blank">${link.url}</a></div>`
+    )
+    .join("");
+};
+
 export const CONTENTS = {
   ":help about": () => CONTENTS.about(),
   ":help projects": () => CONTENTS.projects(),
@@ -159,10 +179,8 @@ export const CONTENTS = {
   <div class="meaning">- Supported large-scale examination data processing and operational workflows, handling thousands of assessment records across distributed international teams</div>
   `,
   contact: getContacts,
-  links: () => {
-    window.open("https://links.hmaruf.com/", "_blank");
-    return "";
-  },
+  links: async () =>
+    `<div class="command"><b>Links</b></div>` + (await getLinks()),
   resume: () => {
     window.open("/resume.pdf", "_blank");
     return "";
