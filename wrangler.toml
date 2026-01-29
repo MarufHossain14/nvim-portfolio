@@ -1,0 +1,5 @@
+compatibility_date = "2026-01-29"
+compatibility_flags = ["nodejs_compat"]
+
+[env.preview]
+compatibility_flags = ["nodejs_compat"]
