@@ -122,6 +122,10 @@ const getProjects = async () => {
 
 const getContacts = async () => {
   const contactMediums = await (await fetch("/api/contacts")).json();
+  if (!contactMediums.length) {
+    return `<div class="help-command">No contact methods are configured yet.</div>`;
+  }
+
   return contactMediums
     .map(
       (contact) => `<div style="display: flex; justify-content: space-between;">
@@ -217,7 +221,7 @@ export const CONTENTS = {
   links: async () =>
     `<div class="command"><b>Links</b></div>` + (await getLinks()),
   resume: () => {
-    window.open("/resume.pdf", "_blank");
+    window.open("https://www.hmaruf.com/resume.pdf", "_blank");
     return "";
   },
   error: (input) =>
