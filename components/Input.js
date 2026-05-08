@@ -91,7 +91,10 @@ export default function Input({
 
   const clearDraft = (event) => {
     if (event.key !== "Escape" || command) return;
-    if (!_command && historyIndex === -1 && !autocompleteMatches) return;
+    if (!_command && historyIndex === -1 && !autocompleteMatches) {
+      event.currentTarget.blur();
+      return;
+    }
     event.preventDefault();
     setCommand("");
     setDraftCommand("");
@@ -128,11 +131,7 @@ export default function Input({
           if (inputRef) {
             inputRef.current = input;
           }
-          if (input && !command) {
-            input.focus();
-          }
         }}
-        autoFocus={command === ""}
       />
     </form>
   );

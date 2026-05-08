@@ -35,6 +35,22 @@
   letter-spacing: 0.04em;
 }
 
+.interactive:focus-within .mode {
+  background-color: var(--green);
+}
+
+.interactive:focus-within .mode::before {
+  content: "INSERT";
+}
+
+.interactive:focus-within .mode {
+  font-size: 0;
+}
+
+.interactive:focus-within .mode::before {
+  font-size: 12px;
+}
+
 .file {
   color: var(--fg);
 }
