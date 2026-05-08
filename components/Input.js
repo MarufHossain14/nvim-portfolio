@@ -20,12 +20,14 @@ export default function Input({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const submittedCommand = _command.trim();
+    if (!submittedCommand) return;
     setHistoryIndex(-1);
     setDraftCommand("");
     setAutocompleteMatches(null);
     setAutocompleteIndex(-1);
     setCommand("");
-    return onSubmit(_command);
+    return onSubmit(submittedCommand);
   };
 
   const handleHistoryNav = (event) => {
@@ -42,9 +44,9 @@ export default function Input({
         ? historyIndex === -1
           ? history.length - 1
           : Math.max(0, historyIndex - 1)
-        : historyIndex === -1
+        : historyIndex === -1 || historyIndex === history.length - 1
           ? -1
-          : Math.min(history.length - 1, historyIndex + 1);
+          : historyIndex + 1;
 
     if (nextIndex === -1) {
       setCommand(draftCommand);
@@ -59,6 +61,7 @@ export default function Input({
   const handleAutocomplete = (event) => {
     if (event.key !== "Tab" || command) return;
     if (!suggestions.length) return;
+    if (!_command.trim()) return;
     event.preventDefault();
 
     const inputValue = _command;
@@ -86,6 +89,17 @@ export default function Input({
     setCommand(matches[0]);
   };
 
+  const clearDraft = (event) => {
+    if (event.key !== "Escape" || command) return;
+    if (!_command && historyIndex === -1 && !autocompleteMatches) return;
+    event.preventDefault();
+    setCommand("");
+    setDraftCommand("");
+    setHistoryIndex(-1);
+    setAutocompleteMatches(null);
+    setAutocompleteIndex(-1);
+  };
+
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <label htmlFor="command">
@@ -105,6 +119,7 @@ export default function Input({
           setAutocompleteIndex(-1);
         }}
         onKeyDown={(event) => {
+          clearDraft(event);
           handleHistoryNav(event);
           handleAutocomplete(event);
         }}

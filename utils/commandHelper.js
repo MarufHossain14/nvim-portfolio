@@ -1,11 +1,15 @@
 const COMMANDS = [
   {
-    command: ":help",
+    command: "help",
     description: "List commands",
   },
   {
-    command: ":theme",
+    command: "theme",
     description: "Cycle theme",
+  },
+  {
+    command: "keys",
+    description: "Show key bindings",
   },
   {
     command: "about",
@@ -40,12 +44,45 @@ const COMMANDS = [
     description: "All my links",
   },
   {
-    command: "q / :q / :clear / clear",
+    command: "clear / q",
     description: "Clear the terminal",
   },
 ];
 
 const THEMES = ["kanagawa", "catppuccin", "rosepine"];
+
+const KEY_BINDINGS = [
+  {
+    key: "i",
+    description: "Focus input",
+  },
+  {
+    key: "Enter",
+    description: "Run command",
+  },
+  {
+    key: "Tab",
+    description: "Autocomplete typed command",
+  },
+  {
+    key: "Up / Down",
+    description: "Move through command history",
+  },
+  {
+    key: "Esc",
+    description: "Clear current line",
+  },
+];
+
+const renderRows = (rows, keyName = "command") =>
+  rows
+    .map(
+      (row) => `<div style="display: flex; justify-content: space-between; gap: 16px;">
+        <p style="font-size: 15px">${row[keyName]}</p>
+        <p>${row.description}</p>
+      </div>`
+    )
+    .join("");
 
 const getCurrentTheme = () => {
   if (typeof document === "undefined") return "kanagawa";
@@ -116,20 +153,18 @@ const getLinks = async () => {
 };
 
 export const CONTENTS = {
-  ":help about": () => CONTENTS.about(),
-  ":help projects": () => CONTENTS.projects(),
-  ":help contact": () => CONTENTS.contact(),
+  "help about": () => CONTENTS.about(),
+  "help projects": () => CONTENTS.projects(),
+  "help contact": () => CONTENTS.contact(),
   help: () =>
-    COMMANDS.map(
-      (command) => `<div style="display: flex; justify-content: space-between;">
-        <p style="font-size: 15px">${command.command}</p>
-        <p>${command.description}</p>
-      </div>`
-    ).join("") +
+    renderRows(COMMANDS) +
     `<br />
-      <div class="command">Try :help about, :help projects, or :help contact</div>`,
-  ":help": () => CONTENTS.help(),
-  ":theme": () => {
+      <div class="command"><b>Keys</b></div>
+      ${renderRows(KEY_BINDINGS, "key")}
+      <br />
+      <div class="command">Try help about, help projects, or help contact</div>`,
+  keys: () => renderRows(KEY_BINDINGS, "key"),
+  theme: () => {
     const current = getCurrentTheme();
     const currentIndex = THEMES.indexOf(current);
     const nextTheme = THEMES[(currentIndex + 1) % THEMES.length];

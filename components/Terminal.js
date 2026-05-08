@@ -26,7 +26,7 @@ export default function Terminal() {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (
-        event.key === "i" &&
+        event.key.toLowerCase() === "i" &&
         !event.altKey &&
         !event.ctrlKey &&
         !event.metaKey &&
@@ -54,15 +54,12 @@ export default function Terminal() {
     let output;
     setLoading(true);
     setCommands([...commands, { command, output: "Loading..." }]);
-    setHistory((prev) => [...prev, command]);
+    setHistory((prev) =>
+      prev[prev.length - 1] === command ? prev : [...prev, command]
+    );
     if (`${command}` in CONTENTS) {
       output = await CONTENTS[`${command}`]();
-    } else if (
-      command === "clear" ||
-      command === ":clear" ||
-      command === ":q" ||
-      command === "q"
-    ) {
+    } else if (command === "clear" || command === "q") {
       setLoading(false);
       return setCommands([]);
     } else {
@@ -77,7 +74,14 @@ export default function Terminal() {
   };
 
   return (
-    <div className={styles.terminal} ref={terminalRef}>
+    <div
+      className={styles.terminal}
+      ref={terminalRef}
+      onMouseDown={(event) => {
+        if (event.target.closest?.("a")) return;
+        inputRef.current?.focus();
+      }}
+    >
       {/* <Command command="help" output="Some very long text will go in here" /> */}
       {commands.map(({ command, output }, index) => (
         <Command command={command} output={output} key={index} />

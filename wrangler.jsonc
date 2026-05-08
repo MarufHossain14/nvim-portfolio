@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "nvim-portfolio",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-01-29",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "CONTACTS_KV",
+      "id": "REPLACE_WITH_CONTACTS_KV_ID"
+    },
+    {
+      "binding": "LINKS_KV",
+      "id": "REPLACE_WITH_LINKS_KV_ID"
+    }
+  ]
+}
