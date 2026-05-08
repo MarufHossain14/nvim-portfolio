@@ -14,8 +14,6 @@
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.16.1",
-    "airtable": "^0.12.2",
-    "cors": "^2.8.5",
     "next": "^15.5.10",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
