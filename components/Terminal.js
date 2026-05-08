@@ -42,6 +42,15 @@ export default function Terminal() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    if (!terminalRef.current) return;
+    terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+
+    if (!loading) {
+      inputRef.current?.focus();
+    }
+  }, [commands, loading]);
+
   const escapeHTML = (str) =>
     str
       .replace(/&/g, "&amp;")
@@ -68,9 +77,6 @@ export default function Terminal() {
 
     setLoading(false);
     setCommands([...commands.slice(0, commands.length), { command, output }]);
-    if (terminalRef) {
-      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
-    }
   };
 
   return (
