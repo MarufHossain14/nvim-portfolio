@@ -1,5 +1,7 @@
 import { getContactMediums } from "../../../utils/contacts";
 
+export const runtime = "edge";
+
 export async function GET(request) {
   const contactMediums = await getContactMediums();
 

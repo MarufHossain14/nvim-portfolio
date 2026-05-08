@@ -1,5 +1,7 @@
 import { getLinks } from "../../../utils/links";
 
+export const runtime = "edge";
+
 export async function GET() {
   const links = await getLinks();
 
