@@ -31,5 +31,18 @@ yarn-error.log*
 .env.production.local
 .env
 
+# OpenNext Cloudflare output
+.open-next
+
+# Wrangler local state
+.wrangler
+
+# local data files with personal info
+/data/contacts.json
+/data/links.json
+
 # vercel
 .vercel
+
+# Wrangler local env
+.dev.vars

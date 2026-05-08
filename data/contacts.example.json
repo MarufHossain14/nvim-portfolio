@@ -1,0 +1,32 @@
+[
+  {
+    "medium": "github",
+    "username": "your-github",
+    "link": "https://github.com/your-handle"
+  },
+  {
+    "medium": "email",
+    "username": "you@example.com",
+    "link": "mailto:you@example.com"
+  },
+  {
+    "medium": "phone",
+    "username": "555-555-5555",
+    "link": "tel:+15555555555"
+  },
+  {
+    "medium": "linkedin",
+    "username": "your-linkedin",
+    "link": "https://www.linkedin.com/in/your-linkedin/"
+  },
+  {
+    "medium": "website",
+    "username": "example.com",
+    "link": "https://www.example.com"
+  },
+  {
+    "medium": "links",
+    "username": "links.example.com",
+    "link": "https://links.example.com/"
+  }
+]
