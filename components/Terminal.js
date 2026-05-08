@@ -88,7 +88,6 @@ export default function Terminal() {
         inputRef.current?.focus();
       }}
     >
-      {/* <Command command="help" output="Some very long text will go in here" /> */}
       {commands.map(({ command, output }, index) => (
         <Command command={command} output={output} key={index} />
       ))}
